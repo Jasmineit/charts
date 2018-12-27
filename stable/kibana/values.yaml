@@ -11,8 +11,8 @@ env: {}
   # To adjust a config option to an env var uppercase + replace `.` with `_`
   # Ref: https://www.elastic.co/guide/en/kibana/current/settings.html
   #
-  # ELASTICSEARCH_URL: http://elasticsearch-client:9200
-  # SERVER_PORT: 5601
+   ELASTICSEARCH_URL: http://elk-elasticsearch-client:9200
+   SERVER_PORT: 5601
   # LOGGING_VERBOSE: "true"
   # SERVER_DEFAULTROUTE: "/app/kibana"
 
@@ -21,7 +21,7 @@ files:
     ## Default Kibana configuration from kibana-docker.
     server.name: kibana
     server.host: "0"
-    elasticsearch.url: http://elasticsearch:9200
+    elasticsearch.url: http://elk-elasticsearch-client:9200
 
     ## Custom config properties below
     ## Ref: https://www.elastic.co/guide/en/kibana/current/settings.html
@@ -30,8 +30,8 @@ files:
     # server.defaultRoute: "/app/kibana"
 
 service:
-  type: ClusterIP
-  externalPort: 443
+  type: NodePort
+  # externalPort: 443
   internalPort: 5601
   # authProxyPort: 5602 To be used with authProxyEnabled and a proxy extraContainer
   ## External IP addresses of service
